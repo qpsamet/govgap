@@ -1,10 +1,11 @@
 # GovGap
 
-A proof-of-concept AI agent that reads a governance document, an open-source project's AI contribution policy or a vendor's AI coding-tool terms, and reports, risk by risk, whether the document manages it, gestures at it, or ignores it. Give it a URL or a file and it returns a report.
+A proof-of-concept AI agent that reads a governance document, an open-source project's AI contribution policy or a vendor's AI coding-tool terms, and reports, risk by risk, whether the document manages it, gestures at it, or ignores it. Give it a URL or a file and it returns structured a report.
+
+Validated as an independent second coder against a hand-coded reference set (Cohen's kappa 0.70, substantial agreement).
+
 
 > Built on Azure AI Foundry with the Microsoft Agent Framework.
-
----
 
 ## What it does
 
@@ -21,19 +22,12 @@ It is an agent, not a single prompt. It routes each document through two gates, 
 
 The agent scores against six risks that the research literature has shown AI coding agents create for the people and projects that absorb their output. The framework targets the costs that surface downstream, in the code, the review burden, and the people.
 
-Four are direct risks, to the code and the developers who write it:
-
-- **C1 Code quality and technical debt.** AI-generated code tends to be structurally more complex, not just more abundant, raising the long-term cost of maintenance. Adoption studies have measured roughly 40% higher code complexity.
-- **C2 Human oversight and verification.** AI output needs active review, which is both necessary and routinely skipped; a large share of AI-written pull requests are merged with no review at all.
-- **C3 Over-reliance and skill erosion.** Leaning on AI erodes the developer's own competence, weakening the very skill needed to catch bad output.
-- **C6 Security and vulnerability.** AI readily produces exploitable code, and its fluency makes developers over-trust it. Kept separate from C1 because a vulnerability is a security hole, not a maintenance cost; one large study found 62% of generated programs contained vulnerabilities.
-
-Two are organisational risks, about how AI shifts load and responsibility:
-
-- **C4 Expert burden and redistribution.** AI lowers the barrier to contributing, pushing the review and rework load onto a shrinking pool of senior maintainers.
-- **C5 Accountability and provenance.** As autonomy rises, who owns the code and how its origin is recorded blurs, and vendor terms tend to push responsibility onto the user.
-
-The risks interlock: over-reliance weakens the oversight that quality and security depend on, and provenance is how accountability and security could be traced back to a source. The literature shows these harms are real. It does not show whether the policies and product terms that govern AI-assisted development address them. That gap is what this agent measures.
+- **C1** Code quality and technical debt
+- **C2** Human oversight and verification
+- **C3** Over-reliance and skill erosion
+- **C4** Expert burden and redistribution
+- **C5** Accountability and provenance
+- **C6** Security and vulnerability
 
 ## How a risk is scored
 
@@ -137,16 +131,4 @@ examples/         a runnable sample document
 The six-risk framework is from my MSc dissertation, which is deriven from the empirical literature on the risks of AI-assisted development.
 This project implements the said framework as a working tool. 
 
-The dissertation's full derivation, reference list, and findings are not part of this repository as the dissertaion has not been submitted, hence the private repository is merely for avoiding the self-plagiarism risk.
-
-
-## Further reading
-
- The key sources, by risk:
-
-- **Code quality** — He et al. (2025), static-analysis of agentic-tool adoption; Sergeyuk et al. (2026), two-year IDE telemetry.
-- **Oversight** — Watanabe et al. (2025), agentic pull requests on GitHub; Becker et al. (2025), the METR randomised trial.
-- **Over-reliance** — Shen and Tamkin (2026), AI assistance and learning outcomes.
-- **Expert burden** — Xu et al. (2025), the load on core developers; Song, Agarwal and Wen (2024), coordination cost.
-- **Accountability** — Seo et al. (2026), "Whose Code Is It?"; Widder et al. (2022), dislocated accountabilities; Treude (2026), analysis of AI coding-tool terms of service.
-- **Security** — Perry et al. (2023), insecure code with AI assistants; Tihanyi et al. (2024), vulnerability rates at scale.
+This is a public demonstration of the agent. The underlying framework's full derivation, the evaluation data, and the dissertation findings are held separately and will be published after the dissertation is submitted to avoid self-plagiarism risks.
